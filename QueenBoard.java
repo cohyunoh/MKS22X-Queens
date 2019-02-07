@@ -21,4 +21,6 @@ public class QueenBoard{
     }
     return false;
   }
+
+  private boolean removeQueen
 }
