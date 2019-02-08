@@ -76,12 +76,16 @@ public class QueenBoard{
 
   private boolean solveHelper(int r, int c){
     if(board[r][c] != 0){
-      if(findOldR(c - 1) == board.length - 1){
-        return false;
+      if(r == board.length - 1){
+        if(findOldR(c - 1) == board.length - 1){
+          return false;
+        }else{
+          int oldR = findOldR(c - 1);
+          removeQueen(oldR, c - 1);
+          return solveHelper(oldR + 1, c - 1);
+        }
       }else{
-        int oldR = findOldR(c - 1);
-        removeQueen(oldR, c - 1);
-        return solveHelper(oldR + 1, c - 1);
+        return solveHelper(r + 1, c);
       }
     }
     addQueen(r,c);
