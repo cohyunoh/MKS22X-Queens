@@ -5,7 +5,7 @@ public class QueenBoard{
     board = new int[size][size];
   }
 
-  public boolean addQueen(int r, int c){
+  private boolean addQueen(int r, int c){
     if((r>=0 || r < board.length) && (c>=0 || c < board.length)){
       board[r][c] = -1;
       for(int i = 1; r + i < board.length && c + i < board.length; i++){
@@ -22,7 +22,7 @@ public class QueenBoard{
     return false;
   }
 
-  public boolean removeQueen(int r, int c){
+  private boolean removeQueen(int r, int c){
     if((r>=0 || r < board.length) && (c>=0 || c < board.length)){
       board[r][c] = 0;
       for(int i = 1; r + i < board.length && c + i < board.length; i++){
