@@ -3,5 +3,7 @@ public class driver{
     QueenBoard board = new QueenBoard(8);
     board.addQueen(3,4);
     System.out.println(board);
+    board.removeQueen(3,4);
+    System.out.println(board);
   }
 }
