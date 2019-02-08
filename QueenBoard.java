@@ -75,9 +75,14 @@ public class QueenBoard{
   }
 
   private boolean solveHelper(int r, int c){
+    if(r == 0 && c == 0){
+      if (board[r][c] != 0){
+        throw new IllegalStateException("This Board Shall Not Be SOlved");
+      }
+    }
     if(board[r][c] != 0){
       if(r == board.length - 1){
-        if(findOldR(c - 1) == board.length - 1){
+        if(c - 1 == 0 && findOldR(c - 1) == board.length - 1){
           return false;
         }else{
           int oldR = findOldR(c - 1);
