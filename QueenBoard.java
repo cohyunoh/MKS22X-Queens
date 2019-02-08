@@ -3,6 +3,15 @@ public class QueenBoard{
 
   public QueenBoard(int size){
     board = new int[size][size];
+    fill();
+  }
+
+  private void fill(){
+    for(int r = 0; r  < board.length; r++){
+      for( int c = 0; c < board.length; c++){
+        board[r][c] = 0;
+      }
+    }
   }
 
   private boolean addQueen(int r, int c){
