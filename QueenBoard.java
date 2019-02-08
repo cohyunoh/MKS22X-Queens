@@ -66,6 +66,22 @@ public class QueenBoard{
   }
 
   private boolean solveHelper(int r, int c){
+    if(board[r][c] != 0){
+      if(findOldR(c - 1) == board.length - 1){
+        return false;
+      }else{
+        int oldR = findOldR(c - 1);
+        removeQueen(oldR, c - 1);
+        return solveHelper(oldR + 1, c - 1);
+      }
+    }
+    addQueen(r,c);
+    if(c == board.length - 1){
+      return true;
+    }
+    return solveHelper(0, c + 1);
+    }
+    /*
     if(board[0][0] != 0){
       throw new IllegalStateException("First value is not zero");
     }
@@ -85,7 +101,7 @@ public class QueenBoard{
       return true;
     }
     return solveHelper(r + 1, c);
-  }
+    */
   private int findOldR(int c){
     for(int i = 0; i < board.length; i++){
       if(board[i][c] == -1){
