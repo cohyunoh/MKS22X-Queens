@@ -80,7 +80,6 @@ public class QueenBoard{
         throw new IllegalStateException("This Board Shall Not Be SOlved");
       }
     }
-    if(r > -1 && r < board.length && c > -1 && c < board.length){
       if(board[r][c] != 0){
         if(r == board.length - 1){
           if(c - 1 == 0 && findOldR(c - 1) == board.length - 1){
@@ -99,8 +98,6 @@ public class QueenBoard{
         return true;
       }
       return solveHelper(0, c + 1);
-      }
-      return false;
     }
     /*
     if(board[0][0] != 0){
