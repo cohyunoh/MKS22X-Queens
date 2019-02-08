@@ -66,21 +66,23 @@ public class QueenBoard{
   }
 
   private boolean solveHelper(int r, int c){
+    if(board[0][0] != 0){
+      throw new IllegalStateException("First value is not zero");
+    }
     if(board[r][c] == 0){
       addQueen(r,c);
     }else if(r == board.length - 1 && board[r][c] != 0){
       if(c - 1 >= 0){
         int oldR = findOldR(c-1);
         removeQueen(oldR, c-1);
-        return solveHelper(oldR + 1, c -1);
+        return solveHelper(oldR + 1, c - 1);
       }else{
         return false;
       }
     }else if(board[board.length - 1][0] == -1 && c == board.length - 1 && r == board.length - 1 && board[r][c] != 0){
         return false;
-    }else{
-      return solveHelper(r + 1, c);
-    }
+      }
+    return solveHelper(r + 1, c);
   }
   private int findOldR(int c){
     for(int i = 0; i < board.length; i++){
