@@ -55,4 +55,36 @@ public class QueenBoard{
     }
     return ans;
   }
+
+  /*
+  *@return false when the board is not solveable and leaves the board filled with zeros;
+  *        true when the board is solveable, and leaves the board in a solved state
+  *@throws IllegalStateException when the board starts with any non-zero value
+  */
+  public boolean solve(){
+    return solveHelper(0,0);
+  }
+
+  private boolean solveHelper(int r, int c){
+    if(board[r][c] == 0){
+      addQueen(r,c);
+    }else if(r == board.length - 1 && board[r][c] != 0){
+      if(c - 1 >= 0){
+        int oldR = findOldR(c-1);
+        removeQueen(oldR, c-1);
+        return solveHelper(oldR + 1, c -1);
+      }else{
+        return false;
+      }
+    }else if(board[board.length - 1][0] == -1 && c == board.length - 1 && r == board.length - 1 && board[r][c] != 0){
+        return false;
+    }
+  }
+  private int findOldR(int c){
+    for(int i = 0; i < board.length; i++){
+      if(board[i][c] == -1){
+        return i;
+      }
+    }
+  }
 }
