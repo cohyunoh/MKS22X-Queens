@@ -38,4 +38,21 @@ public class QueenBoard{
     }
     return false;
   }
+
+  public String toString(){
+    String ans = "";
+    for (int r = 0; r < board.length; r++){
+      String line = "";
+      for (int c = 0; c < board.length; c++){
+        if(board[r][c] == -1){
+          line += "Q ";
+        }else{
+          line += "_ ";
+        }
+      }
+      line += "\n";
+      ans += line;
+    }
+    return ans;
+  }
 }
