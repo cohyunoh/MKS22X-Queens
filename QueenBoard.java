@@ -86,5 +86,6 @@ public class QueenBoard{
         return i;
       }
     }
+    return -1;
   }
 }
