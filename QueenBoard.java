@@ -81,7 +81,9 @@ public class QueenBoard{
       }
     }else if(board[board.length - 1][0] == -1 && c == board.length - 1 && r == board.length - 1 && board[r][c] != 0){
         return false;
-      }
+    }else if(c == board.length - 1 && board[r][c] == 0){
+      return true;
+    }
     return solveHelper(r + 1, c);
   }
   private int findOldR(int c){
