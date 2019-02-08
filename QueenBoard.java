@@ -44,8 +44,8 @@ public class QueenBoard{
     for (int r = 0; r < board.length; r++){
       String line = "";
       for (int c = 0; c < board.length; c++){
-        if(board[r][c] != 0){
-          line += board[r][c] + " ";
+        if(board[r][c] == -1){
+          line += "Q ";
         }else{
           line += "_ ";
         }
