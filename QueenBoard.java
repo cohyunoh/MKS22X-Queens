@@ -5,7 +5,7 @@ public class QueenBoard{
     board = new int[size][size];
   }
 
-  private boolean addQueen(int r, int c){
+  public boolean addQueen(int r, int c){
     if((r>=0 || r < board.length) && (c>=0 || c < board.length)){
       board[r][c] = -1;
       for(int i = 0; r + i < board.length && c + i < board.length; i++){
@@ -22,7 +22,7 @@ public class QueenBoard{
     return false;
   }
 
-  private boolean removeQueen(int r, int c){
+  public boolean removeQueen(int r, int c){
     if((r>=0 || r < board.length) && (c>=0 || c < board.length)){
       board[r][c] = 0;
       for(int i = 0; r + i < board.length && c + i < board.length; i++){
@@ -44,8 +44,8 @@ public class QueenBoard{
     for (int r = 0; r < board.length; r++){
       String line = "";
       for (int c = 0; c < board.length; c++){
-        if(board[r][c] == -1){
-          line += "Q ";
+        if(board[r][c] != 0){
+          line += board[r][c] + " ";
         }else{
           line += "_ ";
         }
