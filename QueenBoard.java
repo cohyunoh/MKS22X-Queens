@@ -80,24 +80,27 @@ public class QueenBoard{
         throw new IllegalStateException("This Board Shall Not Be SOlved");
       }
     }
-    if(board[r][c] != 0){
-      if(r == board.length - 1){
-        if(c - 1 == 0 && findOldR(c - 1) == board.length - 1){
-          return false;
+    if(r > -1 && r < board.length && c > -1 && c < board.length){
+      if(board[r][c] != 0){
+        if(r == board.length - 1){
+          if(c - 1 == 0 && findOldR(c - 1) == board.length - 1){
+            return false;
+          }else{
+            int oldR = findOldR(c - 1);
+            removeQueen(oldR, c - 1);
+            return solveHelper(oldR + 1, c - 1);
+          }
         }else{
-          int oldR = findOldR(c - 1);
-          removeQueen(oldR, c - 1);
-          return solveHelper(oldR + 1, c - 1);
+          return solveHelper(r + 1, c);
         }
-      }else{
-        return solveHelper(r + 1, c);
       }
-    }
-    addQueen(r,c);
-    if(c == board.length - 1){
-      return true;
-    }
-    return solveHelper(0, c + 1);
+      addQueen(r,c);
+      if(c == board.length - 1){
+        return true;
+      }
+      return solveHelper(0, c + 1);
+      }
+      return false;
     }
     /*
     if(board[0][0] != 0){
