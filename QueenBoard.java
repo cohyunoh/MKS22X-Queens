@@ -83,13 +83,13 @@ public class QueenBoard{
       throw new IllegalStateException("This Board Shall Not Be SOlved");
     }else{
       if(r >= board.length){
-        System.out.println("Checking r value");
-        System.out.println("r: " + r);
-        System.out.println("c: " + c);
-        System.out.println("length: " + board.length);
+        //System.out.println("Checking r value");
+        //System.out.println("r: " + r);
+        //System.out.println("c: " + c);
+        //System.out.println("length: " + board.length);
         if(c - 1 >= 0){
-          System.out.println("oldR value");
-          System.out.println("oldR: " + findOldR(c - 1));
+          //System.out.println("oldR value");
+          //System.out.println("oldR: " + findOldR(c - 1));
           int oldR = findOldR(c - 1);
           removeQueen(findOldR(c-1), c - 1);
           return solveHelper(oldR + 1, c - 1);
@@ -97,16 +97,16 @@ public class QueenBoard{
           return false;
         }
       }else if(c >=  board.length){
-        System.out.println("Checking c value");
-        System.out.println("r: " + r);
-        System.out.println("c: " + c);
-        System.out.println("length: " + board.length);
+        //System.out.println("Checking c value");
+        //System.out.println("r: " + r);
+        //System.out.println("c: " + c);
+        //System.out.println("length: " + board.length);
         return true;
       }else{
-        System.out.println("Checking else");
-        System.out.println("r: " + r);
-        System.out.println("c: " + c);
-        System.out.println("length: " + board.length);
+        //System.out.println("Checking else");
+        //System.out.println("r: " + r);
+        //System.out.println("c: " + c);
+        //System.out.println("length: " + board.length);
         if(board[r][c] == 0){
           addQueen(r,c);
           return solveHelper(0, c + 1);
