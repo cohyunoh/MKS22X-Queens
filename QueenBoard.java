@@ -203,4 +203,22 @@ public class QueenBoard{
     }
     board = newBoard;
   }
+  public void flip(int direction){
+    int[][] newBoard = new int[board.length][board.length];
+    //horizontal flip
+    if(direction == 0){
+      for(int r = 0; r < board.length; r ++){
+        for(int c = 0; c < board.length; c ++){
+          newBoard[r][c] = board[r][(board.length - 1) - c];
+        }
+      }
+    }else{
+      for(int r = 0; r < board.length; r ++){
+        for(int c = 0; c < board.length; c ++){
+          newBoard[r][c] = board[(board.length - 1) + r][c];
+        }
+      }
+    }
+    board = newBoard;
+  }
 }

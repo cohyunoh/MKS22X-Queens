@@ -1,9 +1,17 @@
 public class driver{
   public static void main(String[] args) {
     try{
-      QueenBoard board = new QueenBoard(8);
+      QueenBoard board = new QueenBoard(5);
       //System.out.println(board.getLength());
       System.out.println(board.solve());
+      System.out.println(board);
+      board.rotateBoard();
+      System.out.println(board);
+      board.rotateBoard();
+      System.out.println(board);
+      board.rotateBoard();
+      System.out.println(board);
+      board.rotateBoard();
       System.out.println(board);
     }catch(IllegalStateException e){
       System.out.println("Oh well");
