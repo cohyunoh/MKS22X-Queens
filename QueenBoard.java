@@ -80,26 +80,53 @@ public class QueenBoard{
         throw new IllegalStateException("This Board Shall Not Be SOlved");
       }
     }
-      if(board[r][c] != 0){
-        if(r == board.length - 1){
-          if(c - 1 == 0 && findOldR(c - 1) == board.length - 1){
-            return false;
-          }else{
-            int oldR = findOldR(c - 1);
-            removeQueen(oldR, c - 1);
-            return solveHelper(oldR + 1, c - 1);
-          }
-        }else{
-          return solveHelper(r + 1, c);
-        }
-      }
+      //if( -1 < c && c < board.length){
+        //if(-1 < r && r < board.length){
+    if(board[r][c] == 0){
       addQueen(r,c);
-      if(c == board.length - 1){
+      if(c + 1 < board.length){
+        return solveHelper(0, c + 1);
+      }else{
         return true;
       }
-      return solveHelper(0, c + 1);
+    }else{
+      if(r + 1 < board.length){
+        return solveHelper(r + 1, c);
+      }else{
+        if(c - 1 > -1){
+          int oldR = findOldR(c - 1);
+          removeQueen(oldR, c - 1);
+          return solveHelper(oldR + 1, c - 1);
+        }else{
+          return false;
+        }
+      }
     }
+  }
     /*
+    //version2
+    if(board[r][c] != 0){
+      if(r == board.length - 1){
+        if(c - 1 == 0 && findOldR(c - 1) == board.length - 1){
+          return false;
+        }else{
+          int oldR = findOldR(c - 1);
+          removeQueen(oldR, c - 1);
+          return solveHelper(oldR + 1, c - 1);
+        }
+      }else{
+        return solveHelper(r + 1, c);
+      }
+    }
+    addQueen(r,c);
+    if(c == board.length - 1){
+      return true;
+    }
+    return solveHelper(0, c + 1);
+    }
+    */
+    /*
+    //version1
     if(board[0][0] != 0){
       throw new IllegalStateException("First value is not zero");
     }
