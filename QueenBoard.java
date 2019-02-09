@@ -80,20 +80,38 @@ public class QueenBoard{
         throw new IllegalStateException("This Board Shall Not Be SOlved");
       }
     }
+    if(r > board.length){
+      if(c - 1 > -1){
+        removeQueen(findOldR(c-1), c - 1);
+        return solveHelper(findOldR(c-1) + 1, c - 1);
+      }else{
+        return false;
+      }
+    }else if(c > board.length){
+      return true;
+    }
+    if(board[r][c] == 0){
+      addQueen(r,c);
+      return solveHelper(0, c + 1);
+    }
+    return solveHelper(r + 1, c);
+  }
+    /*
+    //version3
       //if( -1 < c && c < board.length){
         //if(-1 < r && r < board.length){
     if(board[r][c] == 0){
       addQueen(r,c);
-      if(c + 1 < board.length){
+      if((c + 1) < board.length){
         return solveHelper(0, c + 1);
       }else{
         return true;
       }
     }else{
-      if(r + 1 < board.length){
+      if((r + 1) < board.length){
         return solveHelper(r + 1, c);
       }else{
-        if(c - 1 > -1){
+        if((c - 1)  > -1){
           int oldR = findOldR(c - 1);
           removeQueen(oldR, c - 1);
           return solveHelper(oldR + 1, c - 1);
@@ -103,6 +121,7 @@ public class QueenBoard{
       }
     }
   }
+  */
     /*
     //version2
     if(board[r][c] != 0){
