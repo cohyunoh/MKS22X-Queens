@@ -3,6 +3,8 @@ public class driver{
     try{
       QueenBoard board = new QueenBoard(4);
       //System.out.println(board.getLength());
+      System.out.println(board.solve());
+      System.out.println(board);
     }catch(IllegalStateException e){
       System.out.println("Oh well");
     }
