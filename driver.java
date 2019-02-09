@@ -13,6 +13,14 @@ public class driver{
       System.out.println(board);
       board.rotateBoard();
       System.out.println(board);
+      board.flip(0);
+      System.out.println(board);
+      board.flip(0);
+      System.out.println(board);
+      board.flip(1);
+      System.out.println(board);
+      board.flip(1);
+      System.out.println(board);
     }catch(IllegalStateException e){
       System.out.println("Oh well");
     }

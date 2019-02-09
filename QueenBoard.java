@@ -215,7 +215,7 @@ public class QueenBoard{
     }else{
       for(int r = 0; r < board.length; r ++){
         for(int c = 0; c < board.length; c ++){
-          newBoard[r][c] = board[(board.length - 1) + r][c];
+          newBoard[r][c] = board[(board.length - 1) - r][c];
         }
       }
     }
