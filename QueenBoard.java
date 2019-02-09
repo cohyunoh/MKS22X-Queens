@@ -194,4 +194,13 @@ public class QueenBoard{
     }
     return -1;
   }
+  public void rotateBoard(){
+    int[][] newBoard = new int[board.length][board.length];
+    for(int r = 0; r < board.length; r ++){
+      for(int c = 0; c < board.length; c ++){
+        newBoard[r][c] = board[c][(board.length - 1) - r];
+      }
+    }
+    board = newBoard;
+  }
 }
