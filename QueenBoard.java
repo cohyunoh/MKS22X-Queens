@@ -241,24 +241,21 @@ public class QueenBoard{
   *@throws IllegalStateException when the board starts with any non-zero value
   */
   public int countSolutions(){
-    int num = 0;
-    if(!solve()){
-      return 0;
-    }else{
-      num ++;
-      int r = findR(board.length - 1);
-      return num + countSolutionsHelper(r,board.length - 1,0);
-    }
+    clear();
+    return countSolutionsHelper(0, 0);
   }
-  private int countSolutionsHelper(int r, int c, int num){
-    if(r >= board.length){
-      if(c - 1 < 0){
-        clear();
-        return num;
+  private int countSolutionsHelper(int r, int num){
+    clear();
+    if(r > board.length){
+      return num;
+    }else{
+      if(solveHelper(r, 0)){
+        num += 8;
+        countSolutionsHelper(r + 1, 0);
       }else{
-
+        countSolutionsHelper(r + 1, 0);
       }
     }
-    return num;
+    return -1;
   }
 }
