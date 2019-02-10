@@ -65,7 +65,7 @@ public class QueenBoard{
     return ans;
   }
 
-  /*
+  /**
   *@return false when the board is not solveable and leaves the board filled with zeros;
   *        true when the board is solveable, and leaves the board in a solved state
   *@throws IllegalStateException when the board starts with any non-zero value
@@ -90,9 +90,9 @@ public class QueenBoard{
       //System.out.println("length: " + board.length);
       if(c - 1 >= 0){
         //System.out.println("oldR value");
-        //System.out.println("oldR: " + findOldR(c - 1));
-        int oldR = findOldR(c - 1);
-        removeQueen(findOldR(c-1), c - 1);
+        //System.out.println("oldR: " + findR(c - 1));
+        int oldR = findR(c - 1);
+        removeQueen(findR(c-1), c - 1);
         return solveHelper(oldR + 1, c - 1);
       }else{
         clear();
@@ -133,7 +133,7 @@ public class QueenBoard{
         return solveHelper(r + 1, c);
       }else{
         if((c - 1)  > -1){
-          int oldR = findOldR(c - 1);
+          int oldR = findR(c - 1);
           removeQueen(oldR, c - 1);
           return solveHelper(oldR + 1, c - 1);
         }else{
@@ -147,10 +147,10 @@ public class QueenBoard{
     //version2
     if(board[r][c] != 0){
       if(r == board.length - 1){
-        if(c - 1 == 0 && findOldR(c - 1) == board.length - 1){
+        if(c - 1 == 0 && findR(c - 1) == board.length - 1){
           return false;
         }else{
-          int oldR = findOldR(c - 1);
+          int oldR = findR(c - 1);
           removeQueen(oldR, c - 1);
           return solveHelper(oldR + 1, c - 1);
         }
@@ -174,7 +174,7 @@ public class QueenBoard{
       addQueen(r,c);
     }else if(r == board.length - 1 && board[r][c] != 0){
       if(c - 1 >= 0){
-        int oldR = findOldR(c-1);
+        int oldR = findR(c-1);
         removeQueen(oldR, c-1);
         return solveHelper(oldR + 1, c - 1);
       }else{
@@ -187,7 +187,7 @@ public class QueenBoard{
     }
     return solveHelper(r + 1, c);
     */
-  private int findOldR(int c){
+  private int findR(int c){
     for(int i = 0; i < board.length; i++){
       if(board[i][c] == -1){
         return i;
@@ -227,15 +227,37 @@ public class QueenBoard{
     int[][] newBoard = new int[board.length][board.length];
     board = newBoard;
   }
+
+  private int nextR(int r, int c){
+    for(int i = 1; r + i < board.length; r++){
+      if(board[r + i][c] == 0){
+        return r + i;
+      }
+    }
+    return -1;
+  }
   /**
   *@return the number of solutions found, and leaves the board filled with only 0's
   *@throws IllegalStateException when the board starts with any non-zero value
   */
   public int countSolutions(){
-    return countSolutionsHelper(0,0,0);
+    if(!solve()){
+      return 0;
+    }else{
+      num ++;
+      int r = findR(board.length - 1);
+      return countSolutionsHelper(r,board.length - 1,0);
+    }
   }
   private int countSolutionsHelper(int r, int c, int num){
-    
+    if(r >= board.length){
+      if(c - 1 < 0){
+        clear();
+        return num;
+      }else{
+
+      }
+    }
     return num;
   }
 }
