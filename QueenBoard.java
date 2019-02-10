@@ -3,15 +3,6 @@ public class QueenBoard{
 
   public QueenBoard(int size){
     board = new int[size][size];
-    fill();
-  }
-
-  private void fill(){
-    for(int r = 0; r  < board.length; r++){
-      for( int c = 0; c < board.length; c++){
-        board[r][c] = 0;
-      }
-    }
   }
 
   private boolean addQueen(int r, int c){
@@ -82,7 +73,7 @@ public class QueenBoard{
     return board.length;
   }
 
-  private boolean solveHelper(int r, int c){
+  public boolean solveHelper(int r, int c){
     if(r >= board.length){
       //System.out.println("Checking r value");
       //System.out.println("r: " + r);
@@ -223,7 +214,7 @@ public class QueenBoard{
     board = newBoard;
   }
 
-  private void clear(){
+  public void clear(){
     int[][] newBoard = new int[board.length][board.length];
     board = newBoard;
   }
@@ -248,14 +239,11 @@ public class QueenBoard{
     clear();
     if(r > board.length){
       return num;
+    }else if(solveHelper(r, 0)){
+      num += 8;
+      return countSolutionsHelper(r + 1, num);
     }else{
-      if(solveHelper(r, 0)){
-        num += 8;
-        countSolutionsHelper(r + 1, 0);
-      }else{
-        countSolutionsHelper(r + 1, 0);
-      }
+      return countSolutionsHelper(r + 1, num);
     }
-    return -1;
   }
 }
