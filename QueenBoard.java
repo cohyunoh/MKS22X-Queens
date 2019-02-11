@@ -74,6 +74,21 @@ public class QueenBoard{
   }
 
   public boolean solveHelper(int r, int c){
+    if(c >=  board.length){
+      return true;
+    }else{
+      for(int i = 0; i < board.length; i++){
+        if(addQueen(r + i, c)){
+          if(solveHelper(0,c+1)){
+            return true;
+          }
+        }
+      }
+      return false;
+    }
+  }
+    /*
+    //version4 - realized that it was not implementing backtracking recursion
     if(r >= board.length){
       //System.out.println("Checking r value");
       //System.out.println("r: " + r);
@@ -108,6 +123,7 @@ public class QueenBoard{
       }
     }
   }
+  */
     /*
     //version3
       //if( -1 < c && c < board.length){
