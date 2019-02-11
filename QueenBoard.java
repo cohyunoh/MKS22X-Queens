@@ -65,7 +65,7 @@ public class QueenBoard{
     if(board[0][0] != 0){
       throw new IllegalStateException("This Board Shall Not Be SOlved");
     }else{
-      return solveHelper(0,0);
+      return solveHelper(0);
     }
   }
 
@@ -73,19 +73,19 @@ public class QueenBoard{
     return board.length;
   }
 
-  private boolean solveHelper(int r, int c){
+  private boolean solveHelper(int c){
     if(c >=  board.length){
       return true;
-    }else{
-      for(int i = 0; i < board.length; i++){
-        if(addQueen(r + i, c)){
-          if(solveHelper(0,c+1)){
-            return true;
-          }
-        }
-      }
-      return false;
     }
+    for(int r = 0; r < board.length; r++){
+      if(addQueen(r, c)){
+        if(solveHelper(c+1)){
+          return true;
+        }
+      removeQueen(r,c);
+      }
+    }
+    return false;
   }
     /*
     //version4 - realized that it was not implementing backtracking recursion

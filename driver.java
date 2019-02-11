@@ -2,6 +2,9 @@ public class driver{
   public static void main(String[] args) {
     try{
       QueenBoard board = new QueenBoard(7);
+      System.out.println(board.solve());
+      System.out.println(board);
+      /*
       System.out.println(board.solveHelper(0,0));
       System.out.println(board);
       board.clear();
@@ -23,6 +26,7 @@ public class driver{
       System.out.println(board.solveHelper(6,0));
       System.out.println(board);
       board.clear();
+      */
       //System.out.println(board.getLength());
       /*
       System.out.println(board.solve());
