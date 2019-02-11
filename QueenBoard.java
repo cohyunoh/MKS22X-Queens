@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 public class QueenBoard{
   private int[][] board;
 
@@ -5,34 +6,34 @@ public class QueenBoard{
     board = new int[size][size];
   }
 
-  private boolean addQueen(int r, int c, int[][] inptBoard){
-    if((r>=0 || r < inptBoard.length) && (c>=0 || c < inptBoard.length) && inptBoard[r][c] == 0){
-      inptBoard[r][c] = -1;
-      for(int i = 1; r + i < inptBoard.length && c + i < inptBoard.length; i++){
-        inptBoard[r + i][c + i] += 1;
+  private boolean addQueen(int r, int c){
+    if((r>=0 || r < board.length) && (c>=0 || c < board.length) && board[r][c] == 0){
+      board[r][c] = -1;
+      for(int i = 1; r + i < board.length && c + i < board.length; i++){
+        board[r + i][c + i] += 1;
       }
-      for(int i = 1; c + i < inptBoard.length && r - i >= 0; i++){
-        inptBoard[r - i][c + i] += 1;
+      for(int i = 1; c + i < board.length && r - i >= 0; i++){
+        board[r - i][c + i] += 1;
       }
-      for(int i = 1; c + i < inptBoard.length; i++){
-        inptBoard[r][c + i] += 1;
+      for(int i = 1; c + i < board.length; i++){
+        board[r][c + i] += 1;
       }
       return true;
     }
     return false;
   }
 
-  private boolean removeQueen(int r, int c, int[][] inptBoard){
-    if((r>=0 || r < inptBoard.length) && (c>=0 || c < inptBoard.length) && inptBoard[r][c] == -1){
-      inptBoard[r][c] = 0;
-      for(int i = 1; r + i < inptBoard.length && c + i < inptBoard.length; i++){
-        inptBoard[r + i][c + i] -= 1;
+  private boolean removeQueen(int r, int c){
+    if((r>=0 || r < board.length) && (c>=0 || c < board.length) && board[r][c] == -1){
+      board[r][c] = 0;
+      for(int i = 1; r + i < board.length && c + i < board.length; i++){
+        board[r + i][c + i] -= 1;
       }
-      for(int i = 1; c + i < inptBoard.length && r - i >= 0; i++){
-        inptBoard[r - i][c + i] -= 1;
+      for(int i = 1; c + i < board.length && r - i >= 0; i++){
+        board[r - i][c + i] -= 1;
       }
-      for(int i = 1; c + i < inptBoard.length; i++){
-        inptBoard[r][c + i] -= 1;
+      for(int i = 1; c + i < board.length; i++){
+        board[r][c + i] -= 1;
       }
       return true;
     }
@@ -78,11 +79,11 @@ public class QueenBoard{
       return true;
     }
     for(int r = 0; r < board.length; r++){
-      if(addQueen(r, c, board)){
+      if(addQueen(r, c)){
         if(solveHelper(c+1)){
           return true;
         }
-      removeQueen(r,c, board);
+      removeQueen(r,c);
       }
     }
     return false;
@@ -204,48 +205,46 @@ public class QueenBoard{
     return -1;
   }
   */
-  public boolean rotateBoard(){
-    int[][] newBoard = new int[board.length][board.length];
-    boolean ans = true;
-    for(int c = 0; c < board.length; c ++){
-      for(int r = 0; r < board.length; r ++){
-        if(addQueen(r,c,newBoard)){
-          ans = true;
-        }else{
-          return false;
+  public ArrayList<int[]> getQueens(int[][] inptBoard){
+    ArrayList<int[]> ans = new ArrayList<int[]>();
+    for(int c = 0; c < inptBoard.length; c++){
+      for(int r = 0; r < inptBoard.length; r++){
+        if(inptBoard[r][c] == -1){
+          int[] inpt = new int[2];
+          inpt[0] = r;
+          inpt[1] = c;
+          ans.add(inpt);
         }
       }
     }
-    board = newBoard;
     return ans;
   }
-  public boolean flip(int direction){
+  public void rotate(){
     int[][] newBoard = new int[board.length][board.length];
-    //horizontal flip\
-    boolean ans = true;
+    for(int c = 0; c < board.length; c ++){
+      for(int r = 0; r < board.length; r ++){
+        newBoard[r][c] = board[c][(board.length - 1) - r];
+      }
+    }
+    board = newBoard;
+  }
+  public void flip(int direction){
+    int[][] newBoard = new int[board.length][board.length];
+    //horizontal flip
     if(direction == 0){
       for(int c = 0; c < board.length; c ++){
         for(int r = 0; r < board.length; r ++){
-          if(addQueen(r,c,newBoard)){
-            ans = true;
-          }else{
-            return false;
-          }
+          newBoard[r][c] = board[r][(board.length - 1) - c];
         }
       }
     }else{
       for(int c = 0; c < board.length; c ++){
         for(int r = 0; r < board.length; r ++){
-          if(addQueen(r,c,newBoard)){
-            ans = true;
-          }else{
-            return false;
-          }
+          newBoard[r][c] = board[(board.length - 1) - r][c];
         }
       }
     }
     board = newBoard;
-    return ans;
   }
 
   public void clear(){
@@ -253,6 +252,9 @@ public class QueenBoard{
     board = newBoard;
   }
 
+  public int[][] getBoard(){
+    return board;
+  }
   /*
   private int nextR(int r, int c){
     for(int i = 1; r + i < board.length; r++){
@@ -271,7 +273,7 @@ public class QueenBoard{
     clear();
     return countSolutionsHelper(0, 0);
   }
-  private int countSolutionsHelper(int r, int num){
+  private int countSolutionsHelper(int c, int num){
     return 0;
   }
 }

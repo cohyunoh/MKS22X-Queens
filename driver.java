@@ -1,9 +1,32 @@
 public class driver{
   public static void main(String[] args) {
     try{
-      QueenBoard board = new QueenBoard(7);
+      QueenBoard board = new QueenBoard(4);
       System.out.println(board.solve());
       System.out.println(board);
+      System.out.print(board.getQueens(board.getBoard()).get(0)[0]);
+      System.out.print(",");
+      System.out.println(board.getQueens(board.getBoard()).get(0)[1]);
+      System.out.print(board.getQueens(board.getBoard()).get(1)[0]);
+      System.out.print(",");
+      System.out.println(board.getQueens(board.getBoard()).get(1)[1]);
+      System.out.print(board.getQueens(board.getBoard()).get(2)[0]);
+      System.out.print(",");
+      System.out.println(board.getQueens(board.getBoard()).get(2)[1]);
+      System.out.print(board.getQueens(board.getBoard()).get(3)[0]);
+      System.out.print(",");
+      System.out.println(board.getQueens(board.getBoard()).get(3)[1]);
+
+      /*
+      System.out.println(board.rotate());
+      System.out.println(board);
+      System.out.println(board.rotate());
+      System.out.println(board);
+      System.out.println(board.rotate());
+      System.out.println(board);
+      System.out.println(board.rotate());
+      System.out.println(board);
+      */
       /*
       System.out.println(board.solveHelper(0,0));
       System.out.println(board);
