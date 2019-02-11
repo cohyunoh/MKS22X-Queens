@@ -6,7 +6,7 @@ public class QueenBoard{
   }
 
   private boolean addQueen(int r, int c){
-    if((r>=0 || r < board.length) && (c>=0 || c < board.length)){
+    if((r>=0 || r < board.length) && (c>=0 || c < board.length) && board[r][c] == 0){
       board[r][c] = -1;
       for(int i = 1; r + i < board.length && c + i < board.length; i++){
         board[r + i][c + i] += 1;
@@ -23,7 +23,7 @@ public class QueenBoard{
   }
 
   private boolean removeQueen(int r, int c){
-    if((r>=0 || r < board.length) && (c>=0 || c < board.length)){
+    if((r>=0 || r < board.length) && (c>=0 || c < board.length) && board[r][c] == -1){
       board[r][c] = 0;
       for(int i = 1; r + i < board.length && c + i < board.length; i++){
         board[r + i][c + i] -= 1;
@@ -73,7 +73,7 @@ public class QueenBoard{
     return board.length;
   }
 
-  public boolean solveHelper(int r, int c){
+  private boolean solveHelper(int r, int c){
     if(c >=  board.length){
       return true;
     }else{
