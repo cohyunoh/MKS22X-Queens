@@ -252,14 +252,6 @@ public class QueenBoard{
     return countSolutionsHelper(0, 0);
   }
   private int countSolutionsHelper(int r, int num){
-    clear();
-    if(r > board.length){
-      return num;
-    }else if(solveHelper(r, 0)){
-      num += 8;
-      return countSolutionsHelper(r + 1, num);
-    }else{
-      return countSolutionsHelper(r + 1, num);
-    }
-  }
+    return 0;
+  }   
 }
