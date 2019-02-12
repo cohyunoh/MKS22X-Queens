@@ -1,7 +1,7 @@
 public class driver{
   public static void main(String[] args) {
     try{
-      for(int i = 0; i < 10; i++){
+      for(int i = 0; i < 100; i++){
         QueenBoard board = new QueenBoard(i);
         System.out.println(board.solve());
         System.out.println(board);
