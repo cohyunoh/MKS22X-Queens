@@ -6,34 +6,34 @@ public class QueenBoard{
     board = new int[size][size];
   }
 
-  private boolean addQueen(int r, int c, int[][] inpt){
-    if((r>=0 || r < inpt.length) && (c>=0 || c < inpt.length) && inpt[r][c] == 0){
-      inpt[r][c] = -1;
-      for(int i = 1; r + i < inpt.length && c + i < inpt.length; i++){
-        inpt[r + i][c + i] += 1;
+  private boolean addQueen(int r, int c){
+    if((r>=0 || r < board.length) && (c>=0 || c < board.length) && board[r][c] == 0){
+      board[r][c] = -1;
+      for(int i = 1; r + i < board.length && c + i < board.length; i++){
+        board[r + i][c + i] += 1;
       }
-      for(int i = 1; c + i < inpt.length && r - i >= 0; i++){
-        inpt[r - i][c + i] += 1;
+      for(int i = 1; c + i < board.length && r - i >= 0; i++){
+        board[r - i][c + i] += 1;
       }
-      for(int i = 1; c + i < inpt.length; i++){
-        inpt[r][c + i] += 1;
+      for(int i = 1; c + i < board.length; i++){
+        board[r][c + i] += 1;
       }
       return true;
     }
     return false;
   }
 
-  private boolean removeQueen(int r, int c, int[][] inpt){
-    if((r>=0 || r < inpt.length) && (c>=0 || c < inpt.length) && inpt[r][c] == -1){
-      inpt[r][c] = 0;
-      for(int i = 1; r + i < inpt.length && c + i < inpt.length; i++){
-        inpt[r + i][c + i] -= 1;
+  private boolean removeQueen(int r, int c){
+    if((r>=0 || r < board.length) && (c>=0 || c < board.length) && board[r][c] == -1){
+      board[r][c] = 0;
+      for(int i = 1; r + i < board.length && c + i < board.length; i++){
+        board[r + i][c + i] -= 1;
       }
-      for(int i = 1; c + i < inpt.length && r - i >= 0; i++){
-        inpt[r - i][c + i] -= 1;
+      for(int i = 1; c + i < board.length && r - i >= 0; i++){
+        board[r - i][c + i] -= 1;
       }
-      for(int i = 1; c + i < inpt.length; i++){
-        inpt[r][c + i] -= 1;
+      for(int i = 1; c + i < board.length; i++){
+        board[r][c + i] -= 1;
       }
       return true;
     }
@@ -75,11 +75,11 @@ public class QueenBoard{
       return true;
     }
     for(int r = 0; r < board.length; r++){
-      if(addQueen(r, c, board)){
+      if(addQueen(r, c)){
         if(solveHelper(c+1)){
           return true;
         }
-      removeQueen(r,c, board);
+      removeQueen(r,c);
       }
     }
     return false;
@@ -111,11 +111,11 @@ public class QueenBoard{
       return num;
     }
     for(int r = 0; r < board.length; r++){
-      if(addQueen(r, c, board)){
+      if(addQueen(r, c)){
         if(countSolutionsHelper(c+1, num) > num){
           num = countSolutionsHelper(c+1, num);
         }
-        removeQueen(r,c, board);
+        removeQueen(r,c);
       }
     }
     return num;
