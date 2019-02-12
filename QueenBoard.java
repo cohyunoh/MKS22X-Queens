@@ -289,11 +289,11 @@ public class QueenBoard{
     for(int r = 0; r < board.length; r++){
       if(addQueen(r, c, board)){
         if(countSolutionsHelper(c+1, num) > num){
-
+          num = countSolutionsHelper(c+1, num);
         }
-      removeQueen(r,c, board);
+        removeQueen(r,c, board);
       }
     }
-    return 0;
+    return num;
   }
 }
