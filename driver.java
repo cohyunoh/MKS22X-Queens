@@ -1,7 +1,7 @@
 public class driver{
   public static void main(String[] args) {
     try{
-      QueenBoard board = new QueenBoard(8);
+      QueenBoard board = new QueenBoard(4);
       System.out.println(board.solve());
       System.out.println(board);
       System.out.print(board.getQueens(board.getBoard()).get(0)[0]);
