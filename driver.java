@@ -17,6 +17,7 @@ public class driver{
       System.out.print(",");
       System.out.println(board.getQueens(board.getBoard()).get(3)[1]);
       System.out.println(board.countSolutions());
+      System.out.println(board);
       /*
       System.out.println(board.rotate());
       System.out.println(board);
